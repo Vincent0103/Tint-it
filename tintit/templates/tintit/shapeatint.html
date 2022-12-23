@@ -1,0 +1,29 @@
+{% extends 'tintit/layout.html' %}
+
+{% block title %}Tint It - Shape a tint{% endblock %}
+
+{% block body %}
+  <div class="container-fluid">
+    <h1>Shape a tint</h1>
+    <h5 class="text-secondary sub">Upload your wallpaper on the platform and make it useable by everyone.</h5>
+    <div id="file-url-button-slide">
+      <button class="slider slider-left" type="button" name="file-img-button">
+        <div class="slide-1">
+          <i class="bi bi-file-earmark-image"></i>
+        </div>
+        <div class="slide-2">Import</div>
+      </button>
+      <button class="slider slider-right" type="button" name="url-img-button">
+        <div class="slide-1">
+          <i class="bi bi-link"></i>
+        </div>
+        <div class="slide-2">Link</div>
+      </button>
+    </div>
+    <form action="{% url 'shapeatint' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input class="btn btn-primary" type="submit" value="Tint it!">
+    </form>
+  </div>
+{% endblock %}

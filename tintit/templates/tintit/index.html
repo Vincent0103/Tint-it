@@ -1,0 +1,26 @@
+{% extends 'tintit/layout.html' %}
+
+{% block title %}Tint It{% endblock %}
+
+{% block body %}
+  {% if not request.user.is_authenticated %}
+    <div class="container-fluid">
+      <h1 id="title-quote">With the brush we merely tint, while the imagination alone produces <i><span id="quote-color-effect">colour.</span></i></h1>
+      <h4 class="text-secondary" id="subtitle-quote">Find the wallpapers of your fantaisies. Make your screen look the finest and pleasant to look at.</h4>
+      <form id="registration-btn-formpage" action="{% url 'register' %}" method="get">
+        <input class="btn btn-primary" type="submit" value="  Sign up  ">
+      </form>
+      <form id="login-btn-formpage" action="{% url 'login' %}" method="get">
+        <input class="btn btn-outline-primary" type="submit" value="  Sign in  ">
+      </form>
+    </div>
+  {% endif %}
+
+  <div class="container-fluid">
+    {% for wallpaper in wallpapers %}
+      <p>{{ wallpaper.title }}</p>
+      <p>{{ wallpaper.file_img.width }}</p>
+      <p>{{ wallpaper.file_img.height }}</p>
+    {% endfor %}
+  </div>
+{% endblock %}
